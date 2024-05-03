@@ -90,7 +90,6 @@ reviewSchema.post("save", (doc, next) => {
 // calling the calcAverageRatings fn in Model - for delete
 reviewSchema.post("findOneAndDelete", (doc, next) => {
   doc.constructor.calcRatingsStats(doc.tour);
-  console.log(doc);
   next();
 });
 

@@ -46,7 +46,7 @@ const cloudinaryUpload = async (buffer, filename, next, type) =>
             console.error(`Error uploading to Cloudinary: ${error.message}`);
             return next(new AppError("Error uploading image", 500));
           }
-          console.log(result.secure_url);
+          // console.log(result.secure_url);
           resolve(result.secure_url);
         }
       )

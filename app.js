@@ -6,6 +6,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 const app = express();
 // const cors = require("cors");
 
@@ -45,6 +46,8 @@ app.use(
     ],
   })
 );
+
+app.use(compression());
 // Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -68,29 +71,3 @@ app.all("*", (req, res, next) => {
 app.use(globalErrorHandler);
 
 module.exports = app;
-
-// //create function that handles sending emails to clients
-
-// const sendEmail = async (options) => {
-//   //1)Create transporter
-//   const transporter = nodemailer.createTransport({
-//     service: "gmail", // or another service
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_APP_BASED_PASS,
-//     },
-//   });
-//   //2) Define email options
-
-//   const mailOptions = {
-//     from: "Yoseph Shimelis <joshrde2002@gmail.com>",
-//     to: options.email,
-//     subject: options.subject,
-//     text: options.text,
-//     //html for later
-//   };
-//   //3)Send the email
-//   await transporter.sendMail(mailOptions);
-// };
-
-// module.exports = sendEmail;

@@ -135,7 +135,6 @@ exports.updatedUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deActivateUser = catchAsync(async (req, res) => {
-  console.log(req.user);
   await User.findByIdAndUpdate(req.params.id, { isActive: false });
 
   res.status(204).json({
